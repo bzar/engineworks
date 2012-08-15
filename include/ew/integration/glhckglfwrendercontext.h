@@ -1,7 +1,7 @@
 #ifndef GLHCKGLFWRENDERCONTEXT_HH
 #define GLHCKGLFWRENDERCONTEXT_HH
 
-#include "ew/glfwrendercontext.h"
+#include "glfwrendercontext.h"
 #include "GL/glhck.h"
 
 class GlhckGLFWRenderContext : public GLFWRenderContext
