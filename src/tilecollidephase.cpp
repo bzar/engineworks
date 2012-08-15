@@ -24,7 +24,17 @@ void ew::TileCollidePhase::execute(float const delta)
         }
       }
 
-      t->setTileX(x);
+      if(x != r2.x)
+      {
+        if(r1.x < r2.x)
+        {
+          t->tileCollisionRight(x);
+        }
+        else
+        {
+          t->tileCollisionLeft(x);
+        }
+      }
     }
 
     r1 = t->getTileCollideRect();
@@ -46,7 +56,17 @@ void ew::TileCollidePhase::execute(float const delta)
         }
       }
 
-      t->setTileY(y);
+      if(y != r2.y)
+      {
+        if(r1.y < r2.y)
+        {
+          t->tileCollisionBottom(y);
+        }
+        else
+        {
+          t->tileCollisionTop(y);
+        }
+      }
     }
   }
 }

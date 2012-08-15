@@ -19,8 +19,11 @@ namespace ew
     virtual TileCollidableWorld::TileCollideRect getTileCollideRect() = 0;
     virtual void moveHorizontally(float const delta) = 0;
     virtual void moveVertically(float const delta) = 0;
-    virtual void setTileX(float const x) = 0;
-    virtual void setTileY(float const y) = 0;
+
+    virtual void tileCollisionTop(float const y) = 0;
+    virtual void tileCollisionBottom(float const y) = 0;
+    virtual void tileCollisionLeft(float const x) = 0;
+    virtual void tileCollisionRight(float const x) = 0;
 
   private:
     TileCollidableWorld* tileCollidableWorld;
