@@ -11,20 +11,22 @@ void ew::TileCollidePhase::execute(float const delta)
 
     if(r1.x != r2.x)
     {
-      float x = r2.x;
+      bool first = true;
+      float x = 0;
       for(auto r : world->getCollidingTiles(r2))
       {
         if(r1.x < r2.x)
         {
-          x = r.x < x ? r.x : x;
+          x = first || r.x < x ? r.x : x;
         }
         else
         {
-          x = r.x + r.w > x ? r.x + r.w : x;
+          x = first || r.x + r.w > x ? r.x + r.w : x;
         }
+        first = false;
       }
 
-      if(x != r2.x)
+      if(!first)
       {
         if(r1.x < r2.x)
         {
@@ -43,20 +45,22 @@ void ew::TileCollidePhase::execute(float const delta)
 
     if(r1.y != r2.y)
     {
-      float y = r2.y;
+      bool first = true;
+      float y = 0;
       for(auto r : world->getCollidingTiles(r2))
       {
         if(r1.y < r2.y)
         {
-          y = r.y < y ? r.y : y;
+          y = first || r.y < y ? r.y : y;
         }
         else
         {
-          y = r.y + r.h > y  ? r.y + r.h : y;
+          y = first || r.y + r.h > y  ? r.y + r.h : y;
         }
+        first = false;
       }
 
-      if(y != r2.y)
+      if(!first)
       {
         if(r1.y < r2.y)
         {
@@ -66,6 +70,7 @@ void ew::TileCollidePhase::execute(float const delta)
         {
           t->tileCollisionTop(y);
         }
+        first = false;
       }
     }
   }
