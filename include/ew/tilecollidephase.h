@@ -13,7 +13,6 @@ namespace ew
     void execute(float const delta);
 
   private:
-    static float const EPSILON;
     TileCollidableWorld* world;
   };
 };

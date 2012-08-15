@@ -1,8 +1,6 @@
 #include "ew/tilecollidephase.h"
 #include "ew/tilecollidable.h"
 
-float const ew::TileCollidePhase::EPSILON = 0.00001;
-
 void ew::TileCollidePhase::execute(float const delta)
 {
   for(TileCollidable* t : world->getTileCollidables())
@@ -18,11 +16,11 @@ void ew::TileCollidePhase::execute(float const delta)
       {
         if(r1.x < r2.x)
         {
-          x = r.x < x + r2.w ? r.x - r2.w - EPSILON : x;
+          x = r.x < x + r2.w ? r.x - r2.w : x;
         }
         else
         {
-          x = r.x + r.w > x ? r.x + r.w + EPSILON : x;
+          x = r.x + r.w > x ? r.x + r.w : x;
         }
       }
 
@@ -40,11 +38,11 @@ void ew::TileCollidePhase::execute(float const delta)
       {
         if(r1.y < r2.y)
         {
-          y = r.y < y + r2.h ? r.y - r2.h - EPSILON : y;
+          y = r.y < y + r2.h ? r.y - r2.h : y;
         }
         else
         {
-          y = r.y + r.h > y  ? r.y + r.h + EPSILON : y;
+          y = r.y + r.h > y  ? r.y + r.h : y;
         }
       }
 
