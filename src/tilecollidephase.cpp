@@ -16,7 +16,7 @@ void ew::TileCollidePhase::execute(float const delta)
       {
         if(r1.x < r2.x)
         {
-          x = r.x < x + r2.w ? r.x - r2.w : x;
+          x = r.x < x ? r.x : x;
         }
         else
         {
@@ -48,7 +48,7 @@ void ew::TileCollidePhase::execute(float const delta)
       {
         if(r1.y < r2.y)
         {
-          y = r.y < y + r2.h ? r.y - r2.h : y;
+          y = r.y < y ? r.y : y;
         }
         else
         {
