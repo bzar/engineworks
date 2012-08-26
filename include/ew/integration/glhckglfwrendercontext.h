@@ -13,6 +13,7 @@ public:
 
   virtual void postRender()
   {
+    glhckRender();
     GLFWRenderContext::postRender();
     glhckClear();
   }
