@@ -2,7 +2,7 @@
 #define GLHCKGLFWRENDERCONTEXT_HH
 
 #include "glfwrendercontext.h"
-#include "GL/glhck.h"
+#include "glhck/glhck.h"
 
 class GlhckGLFWRenderContext : public GLFWRenderContext
 {
