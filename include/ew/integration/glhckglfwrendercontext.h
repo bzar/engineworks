@@ -7,7 +7,7 @@
 class GlhckGLFWRenderContext : public GLFWRenderContext
 {
 public:
-  GlhckGLFWRenderContext() : GLFWRenderContext()
+  GlhckGLFWRenderContext(GLFWwindow window) : GLFWRenderContext(window)
   {
   }
 
