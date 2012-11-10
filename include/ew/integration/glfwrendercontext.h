@@ -7,9 +7,17 @@
 class GLFWRenderContext : public ew::RenderContext
 {
 public:
+  GLFWRenderContext(GLFWwindow window) : window(window)
+  {
+    
+  }
+  
   virtual void postRender()
   {
-    glfwSwapBuffers();
+    glfwSwapBuffers(window);
   }
+  
+private:
+  GLFWwindow window;
 };
 #endif
