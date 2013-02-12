@@ -7,7 +7,7 @@
 class GLFWRenderContext : public ew::RenderContext
 {
 public:
-  GLFWRenderContext(GLFWwindow window) : window(window)
+  GLFWRenderContext(GLFWwindow* window) : window(window)
   {
     
   }
@@ -18,6 +18,6 @@ public:
   }
   
 private:
-  GLFWwindow window;
+  GLFWwindow* window;
 };
 #endif
