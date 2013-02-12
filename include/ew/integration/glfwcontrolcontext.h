@@ -14,7 +14,7 @@ public:
 
   virtual bool keyDown(int const key)
   {
-    return glfwGetKey(*window, key) == GLFW_PRESS;
+    return glfwGetKey(window, key) == GLFW_PRESS;
   }
 
   virtual void update()
