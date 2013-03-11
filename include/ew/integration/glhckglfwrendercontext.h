@@ -15,7 +15,7 @@ public:
   {
     glhckRender();
     GLFWRenderContext::postRender();
-    glhckClear();
+    glhckRenderClear(GLHCK_DEPTH_BUFFER | GLHCK_COLOR_BUFFER);
   }
 };
 #endif
