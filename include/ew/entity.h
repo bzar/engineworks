@@ -2,7 +2,6 @@
 #define ENTITY_HH
 
 #include "ew/world.h"
-#include "ew/uniqueid.h"
 
 namespace ew
 {
@@ -11,12 +10,11 @@ namespace ew
   public:
     Entity(World* world) : world(world) { world->addEntity(this); }
     virtual ~Entity() {}
-    virtual UID getEntityId() const = 0;
 
   protected:
     World* world;
 
   };
-};
+}
 
 #endif

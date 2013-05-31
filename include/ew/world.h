@@ -9,9 +9,6 @@
 namespace ew
 {
   class Entity;
-  class Renderable;
-  class Updatable;
-  class Collidable;
 
   class World
   {
