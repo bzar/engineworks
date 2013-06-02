@@ -11,6 +11,7 @@ void ew::Engine::run()
 {
   running = true;
   current->getWorld()->maintenance();
+  current->enter();
 
   while(running)
   {
@@ -50,7 +51,13 @@ void ew::Engine::setState(int id)
   if(existing == states.end() || existing->second == current)
     return;
 
+  if(running)
+  {
+    current->exit();
+  }
+
   current = existing->second;
+  current->enter();
 }
 
 ew::ControlContext* ew::Engine::getControlContext() const

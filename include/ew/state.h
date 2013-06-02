@@ -15,17 +15,20 @@ namespace ew
   {
   public:
     State(Engine* engine, World* world);
-    virtual ~State() {};
+    virtual ~State() {}
 
     Engine* getEngine() const { return engine; }
     void setPhases(std::vector<Phase*> const& value);
     virtual void process(float const delta);
     virtual World* getWorld() { return world; }
 
+    virtual void enter() {}
+    virtual void exit() {}
+
   protected:
     Engine* engine;
     World* world;
     std::vector<Phase*> phases;
   };
-};
+}
 #endif
