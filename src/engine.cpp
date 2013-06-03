@@ -62,6 +62,15 @@ void ew::Engine::setState(int id)
   next = existing->second;
 }
 
+ew::State* ew::Engine::getState(int id)
+{
+  auto existing = states.find(id);
+  if(existing == states.end())
+    return nullptr;
+
+  return existing->second;
+}
+
 ew::ControlContext* ew::Engine::getControlContext() const
 {
   return controlContext;

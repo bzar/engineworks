@@ -20,6 +20,7 @@ namespace ew
     void quit();
     void addState(int id, State* state);
     void setState(int id);
+    State* getState(int id);
     ControlContext* getControlContext() const;
     RenderContext* getRenderContext() const;
     TimeContext* getTimeContext() const;
