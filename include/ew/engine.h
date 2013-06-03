@@ -31,6 +31,7 @@ namespace ew
     TimeContext* timeContext;
     std::map<int, State*> states;
     State* current;
+    State* next;
 
     Timer timer;
     bool running;

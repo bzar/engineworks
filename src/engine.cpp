@@ -10,11 +10,19 @@ ew::Engine::Engine(ControlContext* controlContext, RenderContext* renderContext,
 void ew::Engine::run()
 {
   running = true;
-  current->getWorld()->maintenance();
-  current->enter();
 
   while(running)
   {
+    if(next != nullptr)
+    {
+      if(current != nullptr)
+        current->exit();
+
+      current = next;
+      current->getWorld()->maintenance();
+      current->enter();
+      next = nullptr;
+    }
     double delta = timer.getDeltaTime();
     controlContext->update();
     renderContext->preRender();
@@ -51,13 +59,7 @@ void ew::Engine::setState(int id)
   if(existing == states.end() || existing->second == current)
     return;
 
-  if(running)
-  {
-    current->exit();
-  }
-
-  current = existing->second;
-  current->enter();
+  next = existing->second;
 }
 
 ew::ControlContext* ew::Engine::getControlContext() const
