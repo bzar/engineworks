@@ -8,8 +8,15 @@ ew::ControlPhase::ControlPhase(ControllableWorld* world, ControlContext* context
 
 void ew::ControlPhase::execute(float const delta)
 {
-  for(Controllable* c : world->getControllables())
+  if(world->getControllableFocus() != nullptr)
   {
-    c->control(context);
+    world->getControllableFocus()->control(context);
+  }
+  else
+  {
+    for(Controllable* c : world->getControllables())
+    {
+      c->control(context);
+    }
   }
 }

@@ -18,9 +18,13 @@ namespace ew
     void unregisterControllable(Controllable* controllable);
     std::set<Controllable*> const& getControllables();
 
+    void setControllableFocus(Controllable* focused);
+    Controllable* getControllableFocus();
+
   private:
     std::set<Controllable*> controllablesToInsert;
     std::set<Controllable*> controllables;
+    Controllable* focusedControllable;
   };
 };
 #endif

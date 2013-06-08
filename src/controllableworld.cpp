@@ -2,7 +2,7 @@
 #include "ew/controllable.h"
 
 ew::ControllableWorld::ControllableWorld() :
-  World(), controllables(), controllablesToInsert()
+  World(), controllables(), controllablesToInsert(), focusedControllable(nullptr)
 {
   onMaintenance([&]() {
     if(!controllablesToInsert.empty())
@@ -38,5 +38,15 @@ void ew::ControllableWorld::unregisterControllable(Controllable* controllable)
 std::set<ew::Controllable*> const& ew::ControllableWorld::getControllables()
 {
   return controllables;
+}
+
+void ew::ControllableWorld::setControllableFocus(ew::Controllable *focused)
+{
+  focusedControllable = focused;
+}
+
+ew::Controllable *ew::ControllableWorld::getControllableFocus()
+{
+  return focusedControllable;
 }
 
