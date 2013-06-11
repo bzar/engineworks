@@ -2,7 +2,7 @@
 #define GLFWRENDERCONTEXT_HH
 
 #include "ew/rendercontext.h"
-#include "GL/glfw3.h"
+#include "GLFW/glfw3.h"
 
 class GLFWRenderContext : public ew::RenderContext
 {

@@ -2,7 +2,7 @@
 #define GLFWTIMECONTEXT_HH
 
 #include "ew/timecontext.h"
-#include "GL/glfw3.h"
+#include "GLFW/glfw3.h"
 
 class GLFWTimeContext : public ew::TimeContext
 {
