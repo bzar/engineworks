@@ -49,8 +49,7 @@ bool ew::Engine::isRunning()
 
 void ew::Engine::addState(int id, State* state)
 {
-  auto existing = states.find(id);
-  if(existing != states.end())
+  if(getState(id) != nullptr)
     return;
 
   states[id] = state;
@@ -59,11 +58,11 @@ void ew::Engine::addState(int id, State* state)
 
 void ew::Engine::setState(int id)
 {
-  auto existing = states.find(id);
-  if(existing == states.end() || existing->second == current)
+  State* existing = getState(id);
+  if(existing == nullptr || existing == current)
     return;
 
-  next = existing->second;
+  next = existing;
 }
 
 ew::State* ew::Engine::getState(int id)
