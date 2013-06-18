@@ -51,12 +51,7 @@ void ew::Engine::addState(int id, State* state)
 {
   auto existing = states.find(id);
   if(existing != states.end())
-  {
-    if(existing->second == current)
-      return;
-
-    delete existing->second;
-  }
+    return;
 
   states[id] = state;
   state->engine = this;
