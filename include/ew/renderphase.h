@@ -1,21 +1,15 @@
-#ifndef RENDERPHASE_HH
-#define RENDERPHASE_HH
+#ifndef EW_RENDERPHASE_H
+#define EW_RENDERPHASE_H
 
 #include "ew/phase.h"
-#include "ew/renderableworld.h"
-#include "ew/rendercontext.h"
+#include "ew/renderable.h"
 
-namespace ew
-{
-  class RenderPhase : public Phase
-  {
-  public:
-    RenderPhase(RenderableWorld* world, RenderContext* context) : world(world), context(context) {}
-    void execute(float const delta);
+namespace ew {
+ class RenderPhase : public Phase
+ {
+ public:
+   void execute(const float delta);
+ };
+}
 
-  private:
-    RenderableWorld* world;
-    RenderContext* context;
-  };
-};
 #endif

@@ -1,19 +1,17 @@
-#ifndef UPDATEPHASE_HH
-#define UPDATEPHASE_HH
+#ifndef EW_UPDATEPHASE_H
+#define EW_UPDATEPHASE_H
 
 #include "ew/phase.h"
-#include "ew/updatableworld.h"
+#include "ew/updatable.h"
+#include "ew/state.h"
 
-namespace ew
-{
-  class UpdatePhase : public Phase
-  {
-  public:
-    UpdatePhase(UpdatableWorld* world) : world(world) {}
-    void execute(float const delta);
+namespace ew {
+ class UpdatePhase : public Phase
+ {
+ public:
+   UpdatePhase(State* state);
+   void execute(const float delta);
+ };
+}
 
-  private:
-    UpdatableWorld* world;
-  };
-};
 #endif

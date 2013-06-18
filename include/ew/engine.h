@@ -1,41 +1,40 @@
-#ifndef ENGINE_HH
-#define ENGINE_HH
+#ifndef EW_ENGINE_H
+#define EW_ENGINE_H
 
-#include <map>
+#include "interfacemap.h"
+#include "state.h"
+#include "interceptor.h"
 
-#include "ew/state.h"
-#include "ew/timer.h"
-#include "ew/controlcontext.h"
-#include "ew/rendercontext.h"
-#include "ew/timecontext.h"
+#include <unordered_map>
+#include <list>
 
-namespace ew
-{
+namespace ew {
   class Engine
   {
   public:
-    Engine(ControlContext* controlContext, RenderContext* renderContext, TimeContext* timeContext);
-
+    Engine();
     void run();
+    void advance(float const delta);
     void quit();
+    bool isRunning();
+
     void addState(int id, State* state);
     void setState(int id);
     State* getState(int id);
-    ControlContext* getControlContext() const;
-    RenderContext* getRenderContext() const;
-    TimeContext* getTimeContext() const;
-    Timer const& getTimer() const;
+
+    void addInterceptor(Interceptor<Engine>* interceptor);
+
+    InterfaceMap singletons;
+    InterfaceMultimap entities;
 
   private:
-    ControlContext* controlContext;
-    RenderContext* renderContext;
-    TimeContext* timeContext;
-    std::map<int, State*> states;
+    std::unordered_map<int, State*> states;
+    std::list<Interceptor<Engine>*> interceptors;
     State* current;
     State* next;
-
-    Timer timer;
     bool running;
+
   };
-};
-#endif
+}
+
+#endif // EW_ENGINE_H
