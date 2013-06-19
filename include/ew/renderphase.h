@@ -8,6 +8,7 @@ namespace ew {
  class RenderPhase : public Phase
  {
  public:
+   RenderPhase(State* state);
    void execute(const float delta);
  };
 }
