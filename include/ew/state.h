@@ -21,9 +21,6 @@ namespace ew {
     InterfaceMap singletons;
     InterfaceMultimap entities;
 
-    virtual void enter() {}
-    virtual void exit() {}
-
   protected:
     friend class Engine;
     std::list<class Phase*> phases;
