@@ -21,10 +21,11 @@ namespace ew {
     InterfaceMap singletons;
     InterfaceMultimap entities;
 
+    Engine* engine;
+
   protected:
     friend class Engine;
     std::list<class Phase*> phases;
-    Engine* engine;
 
   };
 }
