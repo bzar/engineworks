@@ -13,6 +13,11 @@ namespace ew
       {
       }
 
+      bool collidesWith(RectCollisionInformation const& other)
+      {
+        return x < other.x + other.w && y < other.y + other.h && other.x < x + w && other.y < y + h;
+      }
+
       float x = 0.0f;
       float y = 0.0f;
       float w = 0.0f;
