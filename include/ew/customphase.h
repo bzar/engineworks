@@ -6,17 +6,21 @@
 
 namespace ew
 {
-  class CustomPhaseHandler;
-
+  template<typename T, void (T::*method)(float const)>
   class CustomPhase : public ew::Phase
   {
   public:
-    CustomPhase(CustomPhaseHandler* handler, ew::State* state);
+    CustomPhase(State* state, T* target) : Phase(state), target(target)
+    {
+    }
 
-    void execute(const float delta);
+    void execute(const float delta)
+    {
+      (target->*method)(delta);
+    }
 
   private:
-    CustomPhaseHandler* handler;
+    T* target;
   };
 }
 
