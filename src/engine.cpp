@@ -10,6 +10,7 @@ ew::Engine::Engine(ControlContext* controlContext, RenderContext* renderContext,
 void ew::Engine::run()
 {
   running = true;
+  timer.tick();
 
   while(running)
   {
