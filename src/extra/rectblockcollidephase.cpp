@@ -1,6 +1,7 @@
 #include "ew/rectblockcollidephase.h"
 #include "ew/rectblockcollidableactor.h"
 #include "ew/rectblockcollidableblock.h"
+#include <iostream>
 
 static float const EPSILON = 0.001;
 static float const ONE_PLUS_EPSILON = 1 + EPSILON;
@@ -28,42 +29,42 @@ void ew::RectBlockCollidePhase::execute(const float delta)
         RectCollidable::RectCollisionInformation a = actor->getRectCollisionInformation();
         RectCollidable::RectCollisionInformation b = block->getRectCollisionInformation();
 
-        if(rectsCollide(a.x, a.y, a.w, a.h,
-                        b.x, b.y, b.w, b.h))
+        bool horizontalCollision = rectsCollide(a.x, a.y - a.vy * delta, a.w, a.h, b.x, b.y - b.vy * delta, b.w, b.h);
+
+        if(horizontalCollision)
         {
-          if(rectsCollide(a.x - a.vx * delta * ONE_PLUS_EPSILON, a.y, a.w, a.h,
-                          b.x - b.vx * delta * ONE_PLUS_EPSILON, b.y, b.w, b.h))
+          int xDir2 = b.x > a.x ? -1 : 1;
+          if(xDir1 != 0 && xDir1 != xDir2)
           {
-            int yDir2 = b.y > a.y ? -1 : 1;
-            if(yDir1 != 0 && yDir1 != yDir2)
-            {
-              squished = true;
-              break;
-            }
-            else
-            {
-              yDir1 = yDir2;
-              collisions = actor->verticalRectBlockCollision(*block, delta);
-            }
+            squished = true;
+            break;
           }
           else
           {
-            int xDir2 = b.x > a.x ? -1 : 1;
-            if(xDir1 != 0 && xDir1 != xDir2)
-            {
-              squished = true;
-              break;
-            }
-            else
-            {
-              xDir1 = xDir2;
-              collisions = actor->horizontalRectBlockCollision(*block, delta);
-            }
+            xDir1 = xDir2;
+            collisions = actor->horizontalRectBlockCollision(*block, delta);
           }
+        }
+      }
+      for(RectBlockCollidableBlock* block : state->entities.get<RectBlockCollidableBlock>())
+      {
+        RectCollidable::RectCollisionInformation a = actor->getRectCollisionInformation();
+        RectCollidable::RectCollisionInformation b = block->getRectCollisionInformation();
 
-          if(collisions)
+        bool verticalCollision = rectsCollide(a.x, a.y, a.w, a.h, b.x, b.y, b.w, b.h);
+
+        if(verticalCollision)
+        {
+          int yDir2 = b.y > a.y ? -1 : 1;
+          if(yDir1 != 0 && yDir1 != yDir2)
           {
+            squished = true;
             break;
+          }
+          else
+          {
+            yDir1 = yDir2;
+            collisions = actor->verticalRectBlockCollision(*block, delta);
           }
         }
       }

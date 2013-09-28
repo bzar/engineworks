@@ -6,8 +6,8 @@ bool ew::RectBlockCollidableActor::horizontalRectBlockCollision(RectBlockCollida
   RectCollisionInformation a = getRectCollisionInformation();
   RectCollisionInformation b = block.getRectCollisionInformation();
   RectCollisionInformation result = {
-    a.vx > b.vx ? b.x - a.w : b.x + b.w,
-    a.y, a.w, a.h, a.vx * b.vx < 0 ? 0 : a.vx, a.vy
+    a.vx >= b.vx ? b.x - a.w : b.x + b.w,
+    a.y, a.w, a.h, a.vx * b.vx <= 0 ? 0 : a.vx, a.vy
 
   };
   setRectCollisionInformation(result);
@@ -19,8 +19,8 @@ bool ew::RectBlockCollidableActor::verticalRectBlockCollision(RectBlockCollidabl
   RectCollisionInformation a = getRectCollisionInformation();
   RectCollisionInformation b = block.getRectCollisionInformation();
   RectCollisionInformation result = {
-    a.x, a.vy > b.vy ? b.y - a.h : b.y + b.h,
-    a.w, a.h, a.vx, a.vy * b.vy < 0 ? 0 : a.vy
+    a.x, a.vy >= b.vy ? b.y - a.h : b.y + b.h,
+    a.w, a.h, a.vx, a.vy * b.vy <= 0 ? 0 : a.vy
 
   };
   setRectCollisionInformation(result);
