@@ -20,12 +20,18 @@ void ew::RectCollidePhase::execute(const float delta)
       RectCollidable::RectCollisionInformation i1 = c1->getRectCollisionInformation();
       RectCollidable::RectCollisionInformation i2 = c2->getRectCollisionInformation();
 
-      if(i1.x > i2.x + i2.w || i1.y > i2.y + i2.h ||
-         i1.x + i1.w < i2.x || i1.y + i1.h < i2.y)
-        continue;
-
-      c1->handleRectCollision(c2);
-      c2->handleRectCollision(c1);
+      if(rectsCollide(i1.x, i1.y, i1.w, i1.h, i2.x, i2.y, i2.w, i2.h))
+      {
+        c1->handleRectCollision(c2);
+        c2->handleRectCollision(c1);
+      }
     }
   }
+}
+
+bool ew::RectCollidePhase::rectsCollide(float x1, float y1, float w1, float h1,
+                                         float x2, float y2, float w2, float h2)
+{
+  return x1 < x2 + w2 && y1 < y2 + h2 &&
+         x2 < x1 + w1 && y2 < y1 + h1;
 }

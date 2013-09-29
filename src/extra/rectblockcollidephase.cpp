@@ -1,7 +1,6 @@
 #include "ew/rectblockcollidephase.h"
 #include "ew/rectblockcollidableactor.h"
 #include "ew/rectblockcollidableblock.h"
-#include <iostream>
 
 static float const EPSILON = 0.001;
 static float const ONE_PLUS_EPSILON = 1 + EPSILON;
