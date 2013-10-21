@@ -22,6 +22,7 @@ namespace ew
 
       return pushed;
     }
+    virtual char lastPressedChar() {}
     virtual void update() {}
 
   private:
